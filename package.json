@@ -1,0 +1,37 @@
+{
+  "name": "gulp-gray-matter",
+  "version": "2.2.2",
+  "description": "Extract gray-matter header from files.",
+  "author": "Jak Wings <jakwings@gmail.com>",
+  "main": "index.js",
+  "keywords": [
+    "front-matter",
+    "gray-matter",
+    "gulpplugin"
+  ],
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simbo/gulp-gray-matter.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simbo/gulp-gray-matter/issues"
+  },
+  "homepage": "https://github.com/simbo/gulp-gray-matter#readme",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "files": [
+    "Changes.md",
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "event-stream": "~3.1.0",
+    "gray-matter": "~1.2.0"
+  },
+  "devDependencies": {}
+}

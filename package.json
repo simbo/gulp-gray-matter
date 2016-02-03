@@ -2,7 +2,7 @@
   "name": "gulp-gray-matter",
   "version": "2.2.2",
   "description": "Extract gray-matter header from files.",
-  "author": "Jak Wings <jakwings@gmail.com>",
+  "author": "Simon Lepel <simbo@simbo.de> (http://simbo.ninja)",
   "main": "index.js",
   "keywords": [
     "front-matter",

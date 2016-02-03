@@ -6,7 +6,7 @@ gulp-gray-matter
 [![Build Status](https://travis-ci.org/jakwings/gulp-gray-matter.svg)](https://travis-ci.org/jakwings/gulp-gray-matter)
 [![NPM version](https://badge.fury.io/js/gulp-gray-matter.svg)](http://badge.fury.io/js/gulp-gray-matter)
 
-**Unmaintained. Use it at your own risk.**
+**maintainer change. original author: [@jakwings](https://www.npmjs.com/~jakwings)**
 
 Usage
 =====

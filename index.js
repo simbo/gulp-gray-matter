@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('util');
-
 var grayMatter = require('gray-matter'),
     gUtil = require('gulp-util'),
     merge = require('merge'),
@@ -47,7 +45,7 @@ function gulpGrayMatter(options) {
   function extractMatter(chunk) {
     var matter = grayMatter(String(chunk.contents), options.grayMatter),
         data = objectPath.get(chunk, options.property);
-    data = options.setData(_.isObject(data) ? data : {}, matter.data);
+    data = options.setData(typeof data === 'object' ? data : {}, matter.data);
     objectPath.set(chunk, options.property, data);
     if (options.remove) {
       chunk.contents = new Buffer(
@@ -72,15 +70,15 @@ function gulpGrayMatter(options) {
    * @return {object} options object
    */
   function setOptions(opts) {
-    opts = _.isObject(opts) ? opts : {};
+    opts = typeof opts === 'object' ? opts : {};
     return {
-      property: _.isString(opts.property) ? opts.property : 'data',
-      remove: _.isBoolean(opts.remove) ? opts.remove : true,
-      trim: _.isBoolean(opts.trim) ? opts.trim : true,
-      setData: _.isFunction(opts.setData) ? opts.setData : setData,
+      property: typeof opts.property === 'string' ? opts.property : 'data',
+      remove: typeof opts.remove === 'boolean' ? opts.remove : true,
+      trim: typeof opts.trim === 'boolean' ? opts.trim : true,
+      setData: typeof opts.setData === 'function' ? opts.setData : setData,
       grayMatter: {
         delims: opts.delims || '---',
-        eval: _.isBoolean(opts.eval) ? opts.eval : true,
+        eval: typeof opts.eval === 'boolean' ? opts.eval : true,
         lang: opts.lang || 'yaml',
         parser: opts.parser || undefined
       }

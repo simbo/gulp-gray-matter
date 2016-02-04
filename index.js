@@ -65,8 +65,8 @@ function gulpGrayMatter(options) {
   }
 
   /**
-   * [setOptions description]
-   * @param  {object} opts custom options
+   * validate/set custom options
+   * @param  {object} opts    custom options
    * @return {object} options object
    */
   function setOptions(opts) {

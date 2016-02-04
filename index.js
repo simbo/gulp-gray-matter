@@ -1,50 +1,90 @@
 'use strict';
 
-var es = require('event-stream');
-var matter = require('gray-matter');
+var _ = require('util');
 
-var genError = function (message) {
-  return new Error('gulp-gray-matter: ' + message);
-};
+var grayMatter = require('gray-matter'),
+    gUtil = require('gulp-util'),
+    merge = require('merge'),
+    objectPath = require('object-path'),
+    through = require('through2');
 
-var extract = function (file, callback) {
-  if (file.isBuffer()) {
-    if (this.handler || this.name) {
-      var data = matter(String(file.contents), this.options);
-      if (this.handler) {
-        file.contents = new Buffer(this.handler.call(matter, data) || '');
-      }
-      if (this.name) {
-        file[this.name] = data.data;  // may have been modified by handler
-      }
-    }
-    return callback(null, file);
-  }
-  if (file.isStream()) {
-    // TODO?
-    return callback(genError('Cannot get the front-matter in a stream. (unsupported)'), file);
-  }
-  callback(null, file);
-};
+module.exports = gulpGrayMatter;
 
 /**
- * @param {function(this: gray-matter, object): string} handler (optional)
- * @param {object} options options for gray-matter (optional)
- * @param {string} name propery name for adding frontmatter object to file (optional)
+ * gray-matter gulp plugin
+ * @param  {object} options custom options
+ * @return {object}         gulp stream handler
  */
-module.exports = function (handler, options, name) {
-  if (handler !== null && !(handler instanceof Function)) {
-    name = options;
-    options = handler;
-    handler = null;
+function gulpGrayMatter(options) {
+
+  options = setOptions(options);
+
+  return through.obj(transformChunk);
+
+  /**
+   * transform a file
+   * @param  {object}    chunk file object
+   * @param  {string}    enc   file encoding
+   * @param  {Function}  done  callback
+   * @return {undefined}
+   */
+  function transformChunk(chunk, enc, done) {
+    if (chunk.isNull()) return done(null, chunk);
+    if (chunk.isStream()) return this.emit('error', new gUtil.PluginError('gulp-gray-matter', 'Streaming not supported'));
+    try {
+      extractMatter(chunk);
+    } catch (err) {
+      return this.emit('error', err);
+    }
+    done(null, chunk);
   }
-  if (options !== null && typeof options !== 'object') {
-    name = options;
-    options = null;
+
+  /**
+   * extract matter data from file and optionally remove matter header
+   * @param  {object} chunk file object
+   * @return {undefined}
+   */
+  function extractMatter(chunk) {
+    var matter = grayMatter(String(chunk.contents), options.grayMatter),
+        data = objectPath.get(chunk, options.property);
+    data = options.setData(_.isObject(data) ? data : {}, matter.data);
+    objectPath.set(chunk, options.property, data);
+    if (options.remove) {
+      chunk.contents = new Buffer(
+        options.trim ? String(matter.content).trim() : matter.content
+      );
+    }
   }
-  return es.map(extract.bind({
-    name: name,
-    options: options,
-    handler: handler
-  }));
-};
+
+  /**
+   * sets new data values
+   * @param  {object}    oldData old data
+   * @param  {object}    newData new data
+   * @return {undefined}
+   */
+  function setData(oldData, newData) {
+    return merge.recursive(oldData, newData);
+  }
+
+  /**
+   * [setOptions description]
+   * @param  {object} opts custom options
+   * @return {object} options object
+   */
+  function setOptions(opts) {
+    opts = _.isObject(opts) ? opts : {};
+    return {
+      property: _.isString(opts.property) ? opts.property : 'data',
+      remove: _.isBoolean(opts.remove) ? opts.remove : true,
+      trim: _.isBoolean(opts.trim) ? opts.trim : true,
+      setData: _.isFunction(opts.setData) ? opts.setData : setData,
+      grayMatter: {
+        delims: opts.delims || '---',
+        eval: _.isBoolean(opts.eval) ? opts.eval : true,
+        lang: opts.lang || 'yaml',
+        parser: opts.parser || undefined
+      }
+    };
+  }
+
+}

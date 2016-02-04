@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+- '5'
+- '4.2'
+- '0.12'
+- '0.10'
+deploy:
+  provider: npm
+  email: simbo@simbo.de
+  api_key: "${NPM_API_KEY}"
+  on:
+    tags: true
+    repo: simbo/gulp-gray-matter
+after_script:
+- npm run cover
+- npm run codecov
+sudo: false
+env:
+  global:
+    secure: zCGiTuT85dc2q98rSB6bekbVjffq5pcbUCkbV5tfvyjFK/iZFWLbiVZHQEt6yeJW7JrAh1/kk+xpbVrsPP9unRkxALPpC26pakzTXGLgpKNbLjE+yX6PHDj28XFvWNsvN9XWq9J8hxLrHvLFLt4O4use732vRyWECCJboWNcqblUjsP+m7MLErhz7bGmX2jpASWp2qqpvf0HDhkmKChg5OQnOTSQ5KeWsIa51Mb9/nB0NhQhHNzN0ojmMT/jxZiU0IQzzCCArEXBv9Nkx0OMx8r5GTujyn7yZ6IOKEx+9eiyBkrwoAeTwsy/OGUX3x5kcMY3QwCVOq0opc4ieqh5ePF6gnb/CFANVS/aDXdOSgBmVPGKjLqbyTnKtDaOB4mY4pAdV++PyTpjiatOeNb/GnXWjE5A8kMh842VDRu/f/kZEY5T6rgmouRaNs8Xq6vbEa4v0JwfHdWOgRSz9CVWeNwc0NKkXatglqNwY8ayPoddTNuW0VqL1b5AvBMxg4yMpGF5ebILUiED5hMiAQolOpGfOdhR/JGbzIjzycO8nqOkAkU4NomUU72Awlcs3oHM/OA0BoDNHB653BsR6aJLdDN6mwo7jUlMCBEQS3lgVpfOfToRxV32O7n5K63qg3ySmRXcB3xt04TEbWk8n/EXOoDCIKjkrb9PawMdJxoV2D0=

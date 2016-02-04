@@ -1,15 +1,23 @@
 {
   "name": "gulp-gray-matter",
   "version": "2.2.2",
-  "description": "Extract gray-matter header from files.",
+  "description": "A gulp plugin for extracting data header from file contents using gray-matter.",
   "author": "Simon Lepel <simbo@simbo.de> (http://simbo.ninja)",
   "main": "index.js",
   "keywords": [
+    "frontmatter",
     "front-matter",
     "gray-matter",
-    "gulpplugin"
+    "gulpplugin",
+    "gulp",
+    "data"
   ],
   "scripts": {
+    "test": "mocha -R spec",
+    "lint": "eslint ./index.js",
+    "cover": "istanbul cover ./node_modules/.bin/_mocha -- -R spec",
+    "watch": "mocha -R spec -w",
+    "codecov": "codecov"
   },
   "repository": {
     "type": "git",
@@ -24,14 +32,24 @@
     "node": ">= 0.10.0"
   },
   "files": [
-    "Changes.md",
     "index.js",
     "LICENSE",
     "README.md"
   ],
   "dependencies": {
-    "event-stream": "~3.1.0",
-    "gray-matter": "~1.2.0"
+    "gray-matter": "^2.0.2",
+    "gulp-util": "^3.0.7",
+    "merge": "^1.2.0",
+    "object-path": "^0.9.2",
+    "through2": "^2.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "codecov": "^1.0.1",
+    "eslint": "^1.10.3",
+    "eslint-config-simbo": "^0.2.0",
+    "gulp": "^3.9.0",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5",
+    "stream-assert": "^2.0.3"
+  }
 }

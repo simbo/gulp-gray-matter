@@ -1,0 +1,6 @@
+{
+  "extends": "simbo/default/node",
+  "rules": {
+    "vars-on-top": 0
+  }
+}

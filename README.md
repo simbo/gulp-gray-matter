@@ -61,7 +61,6 @@ npm i gulp-gray-matter
 In your `gulpfile.js`:
 
 ```js
-
 var gulp = require('gulp'),
     gulpGrayMatter = require('gulp-gray-matter');
 
@@ -79,7 +78,8 @@ rendering plugin like [gulp-jade](https://www.npmjs.com/package/gulp-jade).
 
 ## Options
 
-Beside its own options, *gulp-gray-matter* also supports all [gray-matter options](https://www.npmjs.com/package/gray-matter#options):
+Beside its own options, *gulp-gray-matter* also supports all
+[gray-matter options](https://www.npmjs.com/package/gray-matter#options):
 `delims`, `eval`, `lang` and `parser`
 
 
@@ -89,8 +89,8 @@ Beside its own options, *gulp-gray-matter* also supports all [gray-matter option
 
 Default: `'data'`
 
-file object property for setting data. can also be a nested property name like 
-`foo.bar.baz`.
+The file object property for setting data. can also be a nested property name
+like `foo.bar.baz`.
 
 
 ### remove
@@ -127,8 +127,6 @@ function setData(oldData, newData) {
 If there is already data attached to the file object on the property defined 
 with `options.property`, existing data will be recursively merged with extracted
 data. Set your own function to change this behavior.
-
-
 
 
 ## License

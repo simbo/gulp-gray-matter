@@ -1,6 +1,6 @@
 {
   "name": "gulp-gray-matter",
-  "version": "2.2.2",
+  "version": "3.0.0",
   "description": "A gulp plugin for extracting data header from file contents using gray-matter.",
   "author": "Simon Lepel <simbo@simbo.de> (http://simbo.ninja)",
   "main": "index.js",

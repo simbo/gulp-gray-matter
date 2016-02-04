@@ -72,7 +72,7 @@ describe('gulp-gray-matter', function() {
       }))
       .pipe(streamAssert.first(function(chunk) {
         assert.equal(chunk.data.title, 'foo');
-        assert.equal(String(chunk.contents), '\n\nsome content\n');
+        assert.equal((/\n+some content\n+/).test(String(chunk.contents)), true);
       }))
       .pipe(streamAssert.end(done));
   });

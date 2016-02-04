@@ -8,12 +8,10 @@ gulp-gray-matter
 
 [![npm Package Version](https://img.shields.io/npm/v/gulp-gray-matter.svg?style=flat-square)](https://www.npmjs.com/package/gulp-gray-matter)
 [![MIT License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://simbo.mit-license.org)
-
 [![Travis Build Status](https://img.shields.io/travis/simbo/gulp-gray-matter/master.svg?style=flat-square)](https://travis-ci.org/simbo/gulp-gray-matter)
 [![Codecov Test Coverage](https://img.shields.io/codecov/c/github/simbo/gulp-gray-matter.svg?style=flat-square)](https://codecov.io/github/simbo/gulp-gray-matter)
-
-[![Dependencies Status](https://img.shields.io/david/simbo/gulp-gray-matter.svg?style=flat-square)](https://david-dm.org/simbo/gulp-gray-matter)
-[![devDependencies Status](https://img.shields.io/david/dev/simbo/gulp-gray-matter.svg?style=flat-square)](https://david-dm.org/simbo/gulp-gray-matter#info=devDependencies)
+[![Dependencies Status](https://img.shields.io/david/simbo/gulp-gray-matter.svg?style=flat-square&label=deps)](https://david-dm.org/simbo/gulp-gray-matter)
+[![devDependencies Status](https://img.shields.io/david/dev/simbo/gulp-gray-matter.svg?style=flat-square&label=devDeps)](https://david-dm.org/simbo/gulp-gray-matter#info=devDependencies)
 
 ---
 

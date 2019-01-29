@@ -121,16 +121,4 @@ describe('gulp-gray-matter', function() {
       }))
       .pipe(streamAssert.end(done));
   });
-
-  it('should catch errors', function(done) {
-    fixtures('foo.md')
-      .pipe(ggm({
-        parser: true
-      }))
-      .on('error', function(err) {
-        assert.equal((/^gray-matter\ cannot\ find\ a\ parser\ for:/).test(err.message), true);
-        done();
-      });
-  });
-
 });

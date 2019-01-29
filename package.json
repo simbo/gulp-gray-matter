@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/simbo/gulp-gray-matter#readme",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 6.0.0"
   },
   "files": [
     "index.js",

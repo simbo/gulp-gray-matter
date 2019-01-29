@@ -48,7 +48,7 @@ function gulpGrayMatter(options) {
     data = options.setData(typeof data === 'object' ? data : {}, matter.data);
     objectPath.set(chunk, options.property, data);
     if (options.remove) {
-      chunk.contents = new Buffer(
+      chunk.contents = Buffer.from(
         options.trim ? String(matter.content).trim() : matter.content
       );
     }

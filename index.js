@@ -1,7 +1,7 @@
 'use strict';
 
 var grayMatter = require('gray-matter'),
-    gUtil = require('gulp-util'),
+    PluginError = require('plugin-error'),
     merge = require('merge'),
     objectPath = require('object-path'),
     through = require('through2');
@@ -28,7 +28,7 @@ function gulpGrayMatter(options) {
    */
   function transformChunk(chunk, enc, done) {
     if (chunk.isNull()) return done(null, chunk);
-    if (chunk.isStream()) return this.emit('error', new gUtil.PluginError('gulp-gray-matter', 'Streaming not supported'));
+    if (chunk.isStream()) return this.emit('error', new PluginError('gulp-gray-matter', 'Streaming not supported'));
     try {
       extractMatter(chunk);
     } catch (err) {
